@@ -7,7 +7,7 @@ export const auth = () => {
     try {
       const {
         data: [result],
-      } = await axios.post(`${config.hue.host}/api`, { devicetype: username });
+      } = await axios.post(`http://${config.hue.host}/api`, { devicetype: username });
 
       if (result.error) {
         return [null, result.error.description];
