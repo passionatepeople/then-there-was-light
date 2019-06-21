@@ -12,7 +12,7 @@ import './App.css';
 const Auth = auth();
 
 const App: React.FC = () => {
-  const [username, setUsername] = useLocalStorage('hue-username', '');
+  const [username, setUsername, remove] = useLocalStorage('hue-username', '');
   const [deviceUser, setDeviceUser] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -79,7 +79,10 @@ const App: React.FC = () => {
       <main>
         <Webcam imageUrl={config.webcam.imageUrl} />
         {username ? (
-          <button onClick={getLightInfo}>getLightInfo</button>
+          <React.Fragment>
+            <button onClick={getLightInfo}>getLightInfo</button>
+            <button onClick={remove}>logout</button>
+          </React.Fragment>
         ) : (
           <form onSubmit={handleClick}>
             <label>
@@ -96,7 +99,7 @@ const App: React.FC = () => {
         {isLoading && <div>loading ...</div>}
         {error && <div>{error}</div>}
         <div>
-          <div>{<p>username: {username}</p>}</div>
+          {username ? <p>username: {username}</p> : null}
           <div style={{ display: 'flex' }}>
             {map(lights, ({ name, state }, key) => {
               return (
