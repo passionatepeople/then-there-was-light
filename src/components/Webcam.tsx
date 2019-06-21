@@ -4,14 +4,15 @@ import { useInterval } from '../hooks'
 
 interface Props {
   imageUrl: string
+  updateInterval?: number
 }
 
-export const Webcam: React.FC<Props> = ({ imageUrl }) => {
+export const Webcam: React.FC<Props> = ({ imageUrl, updateInterval = 1000 }) => {
   const [count, setCount] = useState(0)
 
   useInterval(() => {
     setCount(count + 1)
-  }, 1000);
+  }, updateInterval);
 
   return (
     <div>

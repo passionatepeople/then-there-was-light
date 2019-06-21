@@ -1,6 +1,7 @@
 interface Config {
   webcam: {
     imageUrl: string
+    updateInterval?: number
   };
   hue: {
     host: string
@@ -10,11 +11,11 @@ interface Config {
 
 const config: Config = {
   webcam: {
-    imageUrl: 'http://213.208.241.130:8080/image.jpg',
+    imageUrl: 'http://192.168.1.130/image.jpg',
+    updateInterval: 100, // ms
   },
   hue: {
-    host: '213.208.241.130',
-    port: 8081,
+    host: '192.168.1.137',
   },
 }
 

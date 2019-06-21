@@ -77,7 +77,7 @@ const App: React.FC = () => {
     <div className="App">
       <main>
         <img src="/images/logo.png" />
-        <Webcam imageUrl={config.webcam.imageUrl} />
+        <Webcam {...config.webcam} />
         {username ? (
           <React.Fragment>
             <button onClick={getLightInfo}>getLightInfo</button>
