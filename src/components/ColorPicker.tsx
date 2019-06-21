@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { HuePicker } from 'react-color';
 
-const ColorPicker: React.FC<{ initialValue: any; onChange: (any) => void }> = ({
+export const ColorPicker: React.FC<{ initialValue: any; onChange: (any) => void }> = ({
   initialValue,
   onChange,
 }) => {
@@ -17,5 +17,3 @@ const ColorPicker: React.FC<{ initialValue: any; onChange: (any) => void }> = ({
 
   return <HuePicker color={color} onChangeComplete={handleChange} width="150" />;
 };
-
-export default ColorPicker;

@@ -2,10 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import map from 'lodash/map';
 import { auth, HueApi } from './utils/hue';
 import { useLocalStorage } from './hooks';
-import ColorPicker from './components/ColorPicker';
 import { rgb_to_cie } from './utils/xy-rgb-conversion';
 import config from './config';
-import { Webcam } from './components';
+import { ColorPicker, Webcam } from './components';
 import './App.css';
 
 // If account creation is needed.
@@ -77,6 +76,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <main>
+        <img src="/images/logo.png" />
         <Webcam imageUrl={config.webcam.imageUrl} />
         {username ? (
           <React.Fragment>
@@ -99,31 +99,29 @@ const App: React.FC = () => {
         {isLoading && <div>loading ...</div>}
         {error && <div>{error}</div>}
         <div>
-          {username ? <p>username: {username}</p> : null}
           <div style={{ display: 'flex' }}>
             {map(lights, ({ name, state }, key) => {
               return (
                 <div
                   key={`${key}-${name}`}
                   style={{
-                    width: '150px',
-                    border: '1px solid black',
+                    backgroundColor: 'white',
                     borderRadius: '5px',
                     margin: '10px',
                     padding: '10px',
                     textAlign: 'left',
                   }}
                 >
-                  <p>Name: {name}</p>
-                  {map(state, (value, key, index) => (
-                    <p key={`${index}-${key}`}>
-                      {key}: {value.toString()}
-                    </p>
-                  ))}
                   <ColorPicker
                     initialValue={{ h: state.hue, s: state.sat / 255, l: state.bri / 255 }}
                     onChange={(color) => handleColorChange(color, key)}
                   />
+                  <p>Name: {name}</p>
+                  {/* {map(state, (value, key, index) => (
+                    <p key={`${index}-${key}`}>
+                      {key}: {value.toString()}
+                    </p>
+                  ))} */}
                 </div>
               );
             })}
