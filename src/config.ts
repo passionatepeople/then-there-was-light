@@ -1,9 +1,10 @@
 interface Config {
   webcam: {
-    imageUrl: string;
+    imageUrl: string
   };
   hue: {
-    host: string;
+    host: string
+    port?: number
   };
 }
 
@@ -12,7 +13,8 @@ const config: Config = {
     imageUrl: 'http://213.208.241.130:8080/image.jpg',
   },
   hue: {
-    host: '192.168.1.137',
+    host: '213.208.241.130',
+    port: 8081,
   },
 }
 
